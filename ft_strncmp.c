@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eestell <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/13 19:59:06 by eestell           #+#    #+#             */
-/*   Updated: 2019/09/14 14:49:26 by eestell          ###   ########.fr       */
+/*   Created: 2019/09/14 21:14:45 by eestell           #+#    #+#             */
+/*   Updated: 2019/09/14 21:37:22 by eestell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strrchr(const char *s, int c)
-{
-	int		i;
+#include <string.h>
 
-	while (*s != (char)c)
+int		ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	while (n > 0)
 	{
-		if (*s == '\0')
-			return (0);
-		*s++;
-		i++;
+		if (*s1 != *s2)
+			return (*s1 - *s2);
+		*s1++;
+		*s2++;
+		n--;
 	}
-	while (*s == (char)c)
-	{
-		i++;
-		*s++;
-	}
-	*s--;
-	return (s);
+	return (0);
 }
