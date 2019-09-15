@@ -1,43 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eestell <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/12 20:22:51 by eestell           #+#    #+#             */
-/*   Updated: 2019/09/15 12:41:43 by eestell          ###   ########.fr       */
+/*   Created: 2019/09/15 12:42:38 by eestell           #+#    #+#             */
+/*   Updated: 2019/09/15 12:56:44 by eestell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
 
-int ft_strlen(unsigned char *str)
+void	*ft_memchr(const void *s, int x, size_t n)
 {
-	int i;
+	unsigned char *s1;
 
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return(i);
-}
-
-void *ft_memccpy(void *restrict dst, const void *restrict src, int c, size_t n)
-{
-	unsigned char *str1;
-	unsigned char *str2;
-
-	str1 = src;
-	str2 = dst;
-
+	s1 = s;
 	while (n > 0)
 	{
+		if (*s1 != (unsigned char)x)
+		{
+			*s1 = '!';
+			return (s);
+		}
+		*s1++;
 		n--;
-		if (str1[n] == (unsigned char)c)
-			return (dst);
-		str2[n] = str1[n];
 	}
-	return(dst);
-}
+
+
