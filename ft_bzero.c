@@ -6,38 +6,24 @@
 /*   By: eestell <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 16:52:11 by eestell           #+#    #+#             */
-/*   Updated: 2019/09/12 19:30:15 by eestell          ###   ########.fr       */
+/*   Updated: 2019/09/24 15:02:42 by eestell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdio.h>
+#include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+void	ft_bzero(void *s, size_t n)
 {
-	unsigned char *t;
-	t = b;
-	while (len > 0)
+	unsigned char	*s1;
+	size_t			i;
+
+	s1 = s;
+	if (n == 0)
+		return ;
+	i = 0;
+	while (i < n)
 	{
-	len--;
-	t[len] = (unsigned char)c;
+		s1[i] = '\0';
+		i++;
 	}
-	return (t);
 }
-void	*ft_bzero(void *s, size_t n)
-{
-	unsigned char  *str;
-	char c;
-	str = s;
-	printf("%s ", ft_memset(str, '\0', n));
-	printf("%c ", str[0]);
-}
-
-int main()
-{
-	char str[5] = "";
-	size_t a = 2;
-	ft_bzero(str, 1);
-	return(0);
-}
-

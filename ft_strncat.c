@@ -6,33 +6,24 @@
 /*   By: eestell <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 16:51:53 by eestell           #+#    #+#             */
-/*   Updated: 2019/09/13 17:07:54 by eestell          ###   ########.fr       */
+/*   Updated: 2019/09/22 21:07:40 by eestell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <string.h>
-
-int	ft_strlen(const char *s)
+char	*ft_strncat(char *s1, char *s2, int nb)
 {
-	int		i;
+	int i;
+	int j;
 
 	i = 0;
-	while (s[i] != '\0')
+	while (s1[i] != '\0')
 		i++;
-	return (i);
-}
-
-char	*ft_strncat(char *restrict s1, const char *restrict s2, size_t n)
-{
-	int a;
-	char	*s3;
-
-	a = 0;
-	s3 = s1 + ft_strlen(s1);
-	while (a++ < n)
-		*s3++ = *s2++;
-	*s3 = '\0';
+	j = 0;
+	while (s2[j] != '\0' && j < nb)
+	{
+		s1[i + j] = s2[j];
+		j++;
+	}
+	s1[i + j] = '\0';
 	return (s1);
 }

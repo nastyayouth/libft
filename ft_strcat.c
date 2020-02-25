@@ -6,22 +6,13 @@
 /*   By: eestell <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 15:52:06 by eestell           #+#    #+#             */
-/*   Updated: 2019/09/13 16:50:00 by eestell          ###   ########.fr       */
+/*   Updated: 2019/09/24 15:11:07 by eestell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-int	ft_strlen(const char *s)
-{
-	int		i;
+#include "libft.h"
 
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
-
-char	*ft_strcat(char *restrict s1, const char *restrict s2)
+char	*ft_strcat(char *s1, const char *s2)
 {
 	char	*s3;
 

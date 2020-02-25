@@ -6,46 +6,32 @@
 /*   By: eestell <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 19:58:55 by eestell           #+#    #+#             */
-/*   Updated: 2019/09/15 13:39:18 by eestell          ###   ########.fr       */
+/*   Updated: 2019/09/21 21:29:34 by eestell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
-int		ft_strlen(const char *s)
+char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 {
-	int		i;
+	unsigned int pos;
+	unsigned int i;
 
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
-
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
-{
-	int		i;
-	int		j;
-
-	j = 0;
-	i = 0;
-	if (ft_strlen(needle) > (len))
-		return (0);
-	if (ft_strlen(needle) == 0)
-		return (haystack);
-	while (len-- > 1)
+	if (!*to_find)
+		return ((char*)str);
+	pos = 0;
+	while (str[pos] != '\0' && (size_t)pos < len)
 	{
-		while (haystack[j] != '\0')
+		if (str[pos] == to_find[0])
 		{
-			i = 0;
-			while (needle[i++] == haystack[j++])
-			{
-				if (i == ft_strlen(needle))
-					return (&haystack[j - i]);
-			}
-			if (i == 0)
-				j++;
+			i = 1;
+			while (to_find[i] != '\0' && str[pos + i] == to_find[i] &&
+					(size_t)(pos + i) < len)
+				++i;
+			if (to_find[i] == '\0')
+				return ((char*)&str[pos]);
 		}
+		++pos;
 	}
 	return (0);
 }

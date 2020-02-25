@@ -6,36 +6,37 @@
 /*   By: eestell <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:34:13 by eestell           #+#    #+#             */
-/*   Updated: 2019/09/14 22:25:48 by eestell          ###   ########.fr       */
+/*   Updated: 2019/09/25 12:23:47 by eestell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
+#include "libft.h"
+#define LLONG_MAX 9223372036854775807
 
-int		ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int		index;
-	int		number;
-	int		zn;
+	int						i;
+	unsigned long long		number;
+	int						zn;
 
 	number = 0;
-	index = 0;
+	i = 0;
 	zn = 1;
-	while (str[index] == ' ' || str[index] == '\n' || str[index] == '\r' ||
-			str[index] == '\t' || str[index] == '\f')
-		index++;
-	if (str[index] == '-' || str[index] == '+')
+	while ((str[i] < 14 && str[i] > 8) || str[i] == 32)
+		i++;
+	if ((str[i] == '-' || str[i] == '+') && (str[i + 1] > '9' ||
+	str[i + 1] < '0'))
+		return (0);
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (str[index] == '+')
-			zn = 1;
-		zn = (-1);
-		index++;
+		if (str[i] == '-')
+			zn = (-1);
+		i++;
 	}
-	if (str[index] == '+')
-		index++;
-	while (((str[index] <= '9') && (str[index] >= '0')))
-		number = number * 10 + str[index++] - '0';
-	number = number * (zn);
-	return (number);
+	while (((str[i] <= '9') && (str[i] >= '0')))
+		number = number * 10 + str[i++] - '0';
+	if (zn == (1))
+		return (number < LLONG_MAX ? (int)(number) : -1);
+	else
+		return (number < LLONG_MAX ? (int)(-number) : 0);
 }
